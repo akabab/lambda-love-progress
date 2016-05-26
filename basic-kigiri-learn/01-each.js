@@ -34,7 +34,6 @@ const arrayFrom = (src) => {
 
 const typeOf = (elem) => Object.prototype.toString.call(elem).slice(8, -1)
 
-
 const valuesArrayFromObject = (o) => {
  	if (typeOf(o) !== "Object") { return }
   
