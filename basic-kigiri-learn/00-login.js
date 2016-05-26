@@ -1,4 +1,4 @@
- /*
+/*
  * Instructions :
  * - Open your browser console and call the function git.login like so :
  *     git.login('username', 'password')
