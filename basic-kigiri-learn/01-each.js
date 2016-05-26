@@ -11,10 +11,10 @@ const _each = (fn, collection) => {
   var i = -1
   
   while (++i < max)
-    if (fn(collection[i], i, collection) === false)
+    if (fn(arr[i], i, collection) === false)
       break
   
-  return collection;
+  return collection
 }
 
 // HELPERS
