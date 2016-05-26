@@ -3,7 +3,7 @@ const each = (fn, col) => {
 }
 
 const _each = (fn, col) => {
-    if (typeof col !== "object") { return }
+  if (typeof col !== "object") { return }
   
   const arr = Array.isArray(col) ? col : Object.values(col) 
   
