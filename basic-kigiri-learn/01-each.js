@@ -1,11 +1,7 @@
-const each = (fn, col) => {
-  return col ? _each(fn, col) : (col) => _each(fn, col)
-}
+const each = (fn, col) => col ? arrayEach(fn, col) : (col) => arrayEach(fn, col)
 
-const _each = (fn, col) => {
-  if (typeof col !== "object") { return }
-  
-  const arr = Array.isArray(col) ? col : Object.values(col) 
+const arrayEach = (fn, col) => {
+	var arr = arrayFrom(col)
   
   const max = arr.length
   var i = -1
@@ -20,3 +16,37 @@ const _each = (fn, col) => {
 // HELPERS
 
 Object.prototype.values = (o) => Object.keys(o).map(key => o[key])
+
+const arrayFrom = (src) => {
+  if (typeof src !== "object") { return }
+  
+  switch (typeOf(src)) {
+    case "Array":
+      return src
+    case "Object":
+      return Object.values(src)
+    case "Set":   
+      return Array.from(src)
+    case "Map":
+      return valuesArrayFromMap(src)
+    default:
+      return []
+  }
+}
+
+const typeOf = (elem) => Object.prototype.toString.call(elem).slice(8, -1)
+
+const valuesArrayFromMap = (map) => {
+ 	if (typeOf(map) !== "Map") { return } 
+
+ 	var values = []
+  var iter = map.values()
+  
+  while (1) {
+    var n = iter.next()
+    if (n.done) { return values }
+    values.push(n.value)
+  } 
+}
+
+Map.prototype.valuesArray = valuesArrayFromMap
