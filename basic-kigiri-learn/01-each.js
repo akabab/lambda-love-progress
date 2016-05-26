@@ -1,22 +1,22 @@
-const each = (fn, collection) => {
-  return collection ? _each(fn, collection) : (collection) => _each.apply(this, [fn, collection])
+const each = (fn, col) => {
+  return col ? _each(fn, col) : (col) => _each(fn, col)
 }
 
-const _each = (fn, collection) => {
-	if (typeof collection !== "object") { return }
+const _each = (fn, col) => {
+    if (typeof col !== "object") { return }
   
-  var arr = Array.isArray(collection) ? collection : Object.values(collection) 
+  const arr = Array.isArray(col) ? col : Object.values(col) 
   
   const max = arr.length
   var i = -1
   
   while (++i < max)
-    if (fn(arr[i], i, collection) === false)
+    if (fn(arr[i], i, col) === false)
       break
   
-  return collection
+  return col
 }
 
 // HELPERS
 
-Object.prototype.values = (obj) => Object.keys(obj).map(key => obj[key])
+Object.prototype.values = (o) => Object.keys(o).map(key => o[key])
