@@ -19,4 +19,4 @@ const _each = (fn, collection) => {
 
 // HELPERS
 
-Object.prototype.values = (obj) => Object.keys(obj).map(key => obj[key]);
+Object.prototype.values = (obj) => Object.keys(obj).map(key => obj[key])
