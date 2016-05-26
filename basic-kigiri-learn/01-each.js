@@ -15,8 +15,6 @@ const arrayEach = (fn, col) => {
 
 // HELPERS
 
-Object.prototype.values = (o) => Object.keys(o).map(key => o[key])
-
 const arrayFrom = (src) => {
   if (typeof src !== "object") { return }
   
@@ -24,7 +22,7 @@ const arrayFrom = (src) => {
     case "Array":
       return src
     case "Object":
-      return Object.values(src)
+      return valuesArrayFromObject(src)
     case "Set":   
       return Array.from(src)
     case "Map":
@@ -35,6 +33,13 @@ const arrayFrom = (src) => {
 }
 
 const typeOf = (elem) => Object.prototype.toString.call(elem).slice(8, -1)
+
+
+const valuesArrayFromObject = (o) => {
+ 	if (typeOf(o) !== "Object") { return }
+  
+  return Object.keys(o).map(key => o[key])
+}
 
 const valuesArrayFromMap = (map) => {
  	if (typeOf(map) !== "Map") { return } 
@@ -48,5 +53,3 @@ const valuesArrayFromMap = (map) => {
     values.push(n.value)
   } 
 }
-
-Map.prototype.valuesArray = valuesArrayFromMap
